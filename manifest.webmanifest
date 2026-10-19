@@ -1,0 +1,14 @@
+{
+  "name": "浮島獵人",
+  "short_name": "浮島獵人",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0b1a2b",
+  "theme_color": "#0b1a2b",
+  "icons": [
+    { "src": "icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

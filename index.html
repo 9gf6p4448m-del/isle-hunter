@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0b1a2b">
+<meta name="build-sha" content="ef5f182">
+<meta name="app-version" content="0.1.0">
+<meta name="apple-mobile-web-app-title" content="浮島獵人">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>浮島獵人 S0</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0b1a2b; overscroll-behavior: none; }
+  body { touch-action: none; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; }
+  #game { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #overlay, #ui { position: fixed; inset: 0; pointer-events: none; }
+</style>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="overlay"></div>
+<div id="ui"></div>
+<script src="app.js?v=0.1.0-ef5f182"></script>
+</body>
+</html>
