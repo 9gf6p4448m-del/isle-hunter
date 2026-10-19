@@ -135,3 +135,15 @@
   box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 #updBar.on { display: block; }
+
+/* ── 標題：兩區模式（候選 v0.2 為主、S0 基準為次）── */
+.modes { display: flex; gap: 14px; justify-content: center; align-items: stretch; margin-top: 8px; }
+.mode { padding: 8px 14px 10px; border-radius: 14px; background: rgba(10, 24, 42, 0.45); border: 1px solid rgba(255,255,255,0.14); }
+.mode.main { border-color: var(--line); background: rgba(56, 224, 192, 0.12); }
+.mode h3 { margin: 0 0 4px; font-size: 14px; }
+.mode.alt h3 { color: rgba(232,244,255,0.7); }
+.mode .btns { margin-top: 4px; }
+.mode.main .btns button { min-width: 200px; }
+.mode.alt .btns button { min-width: 96px; min-height: 42px; font-size: 15px; }
+.btns button.small { min-width: 120px; min-height: 38px; font-size: 14px; }
+.note { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: #ffd98a; text-align: left; }
