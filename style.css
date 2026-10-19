@@ -147,3 +147,27 @@
 .mode.alt .btns button { min-width: 96px; min-height: 42px; font-size: 15px; }
 .btns button.small { min-width: 120px; min-height: 38px; font-size: 14px; }
 .note { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: #ffd98a; text-align: left; }
+
+/* ── v0.3：標題三區、攀附門檻切換、翻回鍵、出界紀錄 ── */
+.modes { gap: 10px; }
+.mode { padding: 6px 10px 8px; }
+.mode h3 { font-size: 13px; }
+.mode.main .btns button { min-width: 150px; }
+.mode.alt .btns button { min-width: 84px; }
+.mode > button.depth { display: block; margin: 6px auto 0; min-height: 34px; padding: 0 12px; font: inherit; font-size: 13px; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.55); border: 1px solid rgba(255,255,255,0.3); border-radius: 10px; }
+@media (max-height: 400px) { .panel h1 { font-size: 30px; } .menu-title .sub { display: none; } }
+.skill .lbl { display: none; text-decoration: none; font-size: 17px; font-weight: 900; letter-spacing: 0.04em; }
+.skill.dash.ledge { background: rgba(56, 224, 192, 0.55); border-color: #7dffd8; color: #fff; animation: ledge-pulse 0.7s ease-in-out infinite alternate; }
+.skill.dash.ledge svg { display: none; }
+.skill.dash.ledge .lbl { display: block; }
+.skill.dash.climbing { opacity: 0.45; border-color: rgba(120,210,255,0.3); }
+@keyframes ledge-pulse { from { box-shadow: 0 0 0 0 rgba(125,255,216,0.7); } to { box-shadow: 0 0 0 9px rgba(125,255,216,0); } }
+.edge { margin: 4px 0 8px; font-size: 12px; text-align: left; }
+.edge summary { cursor: pointer; text-align: center; padding: 6px; min-height: 30px; }
+.edge-list { max-height: 150px; overflow-y: auto; touch-action: pan-y; }
+.edge-list * { touch-action: pan-y; }
+.edge-list table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.edge-list th, .edge-list td { padding: 3px 6px; border-bottom: 1px solid rgba(255,255,255,0.12); white-space: nowrap; text-align: center; }
+.edge-list th { color: var(--accent); font-weight: 600; position: sticky; top: 0; background: #0e2036; }
+.menu-result.edge-open .stats, .menu-result.edge-open .res-text { display: none; }
+.menu-result.edge-open .res-title { font-size: 28px !important; margin-bottom: 0; }
