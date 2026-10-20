@@ -249,3 +249,5 @@
 .hud .exit-hint.on.fade { opacity: 0; }
 /* 提示顯示期間，中央大字提示讓到它下面（縮小一點，下緣仍在畫面 40% 內） */
 #ui.hint-on .banner { top: calc(var(--st) + 97px); font-size: 28px; }
+
+.menu-result.no-stats .stats { display: none; }
