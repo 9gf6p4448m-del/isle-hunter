@@ -287,3 +287,54 @@
 .offers-row { display: flex; gap: 8px; align-items: flex-end; }
 .offers-target { padding: 1px 10px; border-radius: 9px; background: rgba(10, 24, 42, 0.78); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; color: #ffe9a8; pointer-events: none; white-space: nowrap; }
 .offers-target:empty { display: none; }
+
+/* ── S1-c：祝福圖示＝黑繪圓章（赤陶橘圓底＋黑色側面剪影），三種狀態 data-state：held／fired／cooldown ── */
+.bless { padding: 2px; background: radial-gradient(circle at 35% 30%, #e2803f, #b4521f); border: 1.5px solid currentColor; box-shadow: none; filter: none; opacity: 1; transform: none; }
+.bless .inc { display: none; }
+.bless.big .inc { display: inline; }
+.bless[data-state="held"] { box-shadow: none; filter: none; opacity: 1; transform: none; }
+.bless[data-state="fired"] { box-shadow: 0 0 0 2px #ffe08a, 0 0 10px 3px rgba(255, 215, 100, 0.95); filter: brightness(1.3) saturate(1.25); transform: scale(1.12); opacity: 1; }
+.bless[data-state="cooldown"] { box-shadow: none; filter: grayscale(1) brightness(0.7); opacity: 0.5; transform: none; }
+
+/* ── 祝福圖示三版對照（?bless=b|c；預設 A 現行不變）── */
+.bless .fx { display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+.bless[data-state="fired"] .fx { display: block; }
+/* B 概念圖風：深色圓底、亮色符號、各神專屬色外環；觸發＝放射光芒＋光暈；冷卻＝灰階 */
+.bs-b .bless.athena { color: #f4c542; } .bs-b .bless.hermes { color: #36d3f0; } .bs-b .bless.poseidon { color: #20c9a8; }
+.bs-b .bless { position: relative; padding: 2px; border: 2px solid currentColor; background: radial-gradient(circle at 50% 38%, #1a3c5c, #091624); }
+.bs-b .bless svg:first-child { position: static; transform: none; }
+.bs-b .bless .fx { width: 36px; height: 36px; }
+.bs-b .bless[data-state="fired"] { transform: none; filter: brightness(1.3); box-shadow: 0 0 6px 2px currentColor; background: radial-gradient(circle at 50% 38%, #27567f, #0d2237); }
+.bs-b .bless[data-state="cooldown"] { filter: grayscale(1) brightness(0.85); opacity: 0.8; box-shadow: none; transform: none; }
+/* C 混合：黑繪剪影＋各神專屬色粗外環（赤陶橘圓底）；觸發＝放射光芒畫在圖示自己的範圍內；冷卻＝灰階 */
+.bs-c .bless.athena { color: #f4c542; } .bs-c .bless.hermes { color: #36d3f0; } .bs-c .bless.poseidon { color: #20c9a8; }
+.bs-c .bless { position: relative; padding: 1px; border: 3px solid currentColor; }
+.bs-c .bless .fx { width: 24px; height: 24px; }
+.bs-c .bless[data-state="fired"] { transform: none; filter: brightness(1.25) saturate(1.2); box-shadow: inset 0 0 5px 1px rgba(255, 255, 255, 0.85); }
+.bs-c .bless[data-state="cooldown"] { filter: grayscale(1) brightness(0.75); opacity: 0.55; box-shadow: none; transform: none; }
+
+/* ── B 概念圖風：觸發光芒與光暈向外延伸 8px，靠位置與間距讓出空間（光芒本身不縮）──
+   兩圖示間距 18px（兩圈各 8px 不相交）、與復活圖示 10px；血條寬度隨畫面寬度讓出：
+   血條右緣＋8＋復活圖示(≈52.5)＋10＋圖示 24＋18＋24＋光暈 8＋與計時的間隙 ≥4，需 ≤ 計時左緣（50vw−46）。 */
+.bs-b .hudrow { gap: 10px; }
+.bs-b .blessings { gap: 18px; }
+#ui.bs-b .hud.s1 { --hpw: max(100px, min(176px, calc(50vw - 213px - var(--sl)))); }
+
+/* ── 標題畫面最小整理：開始（阿瑞斯／瑪爾斯）＋預設收合的「測試入口」──
+   收合時只有遊戲名、版本、開始、角落的「測試入口」與靜音（新版按鈕 #updBar 在底部中央）；展開成左右兩欄。 */
+.title-panel { display: flex; align-items: center; justify-content: center; gap: 26px; text-align: center; }
+.title-main h1 { font-size: 40px; }
+.title-main .start { margin-top: 12px; padding: 8px 16px 12px; border-radius: 14px; background: rgba(56, 224, 192, 0.12); border: 1px solid var(--line); }
+.title-main .start h3 { margin: 0 0 4px; font-size: 14px; color: var(--accent); }
+.corner { position: absolute; bottom: calc(var(--sb) + 10px); min-width: 0 !important; min-height: 32px !important; padding: 0 12px !important; font-size: 13px !important; opacity: 0.85; z-index: 2; }
+.corner.dev-toggle { left: calc(var(--sl) + 12px); }
+.corner-right { position: absolute; right: calc(var(--sr) + 12px); bottom: calc(var(--sb) + 10px); display: flex; gap: 8px; z-index: 2; }
+.corner-right .corner { position: static; display: inline-flex; align-items: center; justify-content: center; font: inherit; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.55); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 12px; }
+.tbtn.tiny.corner { display: inline-flex; align-items: center; justify-content: center; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.55); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 12px; }
+.dev-panel { text-align: left; }
+.dev-panel[hidden] { display: none; }
+.devrow { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; flex-wrap: wrap; }
+.devrow b { font-size: 12px; font-weight: 700; color: var(--accent); margin-right: 2px; white-space: nowrap; }
+.devrow button, .devrow .tbtn { display: inline-flex; align-items: center; justify-content: center; min-width: 0; min-height: 32px; padding: 0 10px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.62); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px; }
+.menu-title.dev-open .title-main h1 { font-size: 28px; }
+@media (max-height: 400px) { .title-main h1 { font-size: 34px; } .menu-title.dev-open .title-main h1 { font-size: 26px; } }
