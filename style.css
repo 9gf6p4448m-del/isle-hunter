@@ -335,6 +335,67 @@
 .dev-panel[hidden] { display: none; }
 .devrow { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; flex-wrap: wrap; }
 .devrow b { font-size: 12px; font-weight: 700; color: var(--accent); margin-right: 2px; white-space: nowrap; }
-.devrow button, .devrow .tbtn { display: inline-flex; align-items: center; justify-content: center; min-width: 0; min-height: 32px; padding: 0 10px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.62); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px; }
+.devrow button, .devrow .tbtn { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 0 10px; font: inherit; font-size: 13px; font-weight: 600; color: var(--ink); cursor: pointer; background: rgba(10, 24, 42, 0.62); border: 1.5px solid rgba(255,255,255,0.3); border-radius: 10px; }
 .menu-title.dev-open .title-main h1 { font-size: 28px; }
 @media (max-height: 400px) { .title-main h1 { font-size: 34px; } .menu-title.dev-open .title-main h1 { font-size: 26px; } }
+
+/* ── 標題 B「繪本扉頁」（製作人 2026-10-24 選定；示意圖 tether-wt/title-mock/b-storybook.png）──
+   DOM 與 data-act 都沒變，只換外觀：羊皮紙頁（h1 只顯示「狄西婭」，英文全名與「失落的啟示」是獨立元素）＋書籤式入口。
+   字型自備子集（OFL，授權檔在 public/OFL-*.txt），執行時不連任何外部字型網址。 */
+@font-face { font-family: "Ditheia Title Zh"; src: url(wenkai-title.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Ditheia Title En"; font-style: italic; src: url(fell-italic-title.woff2) format("woff2"); font-display: swap; }
+.menu-title { align-items: flex-start; background: rgba(10, 12, 30, 0.34); --paper: #efe0bd; --paper-2: #e6d2a4; --ink-b: #3b2414; --rust: #7a3b22; --zh: "Ditheia Title Zh", "LXGW WenKai TC", "PingFang TC", "Noto Serif TC", "Microsoft JhengHei", serif; }
+.menu-title .title-panel { align-items: flex-start; }
+.menu-title .title-main { display: flex; flex-direction: column; align-items: center; gap: clamp(12px, 3.4vh, 20px); }
+.menu-title .title-page { position: relative; isolation: isolate; width: min(552px, 100%); padding: clamp(6px, 1.8vh, 14px) 24px clamp(6px, 1.6vh, 10px); color: var(--ink-b); font-family: var(--zh); }
+.menu-title .title-page::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--paper); border-radius: 6px 22px 8px 26px; box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 0 40px rgba(150,100,40,0.35); transform: rotate(-0.6deg); }
+.menu-title .title-page h1 { margin: 0; font-family: var(--zh); font-weight: 400; font-size: clamp(42px, 13vh, 62px); line-height: 1.35; letter-spacing: 0.12em; color: var(--ink-b); text-shadow: none; }
+.menu-title .title-page h1 .t-en, .menu-title .title-page h1 .t-br { display: none; }
+.menu-title .title-en { margin: 2px auto 0; padding-top: 12px; font: italic 400 clamp(19px, 6.4vh, 28px)/1.4 "Ditheia Title En", "IM Fell English", Georgia, serif; color: var(--rust); background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='10'%3E%3Cpath d='M2 6 Q25 0 50 5 T100 5 T150 5 T198 4' fill='none' stroke='%237a3b22' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E") top center / 60% 10px no-repeat; }
+.menu-title .title-tag { margin: 2px 0 0; line-height: 1.4; font-size: clamp(14px, 4.4vh, 19px); letter-spacing: 0.3em; color: #5a3a22; }
+.menu-title .title-ver { margin: 0; line-height: 1.4; font-size: 11px; color: #5a3a22; opacity: 0.8; }
+.menu-title .title-main .start { margin: 0; padding: 0; background: none; border: 0; }
+.menu-title .title-main .start h3 { margin: 0 0 4px; font: 400 14px/1.2 var(--zh); letter-spacing: 0.5em; color: #f3e6c8; text-shadow: 0 1px 3px #000; }
+.menu-title .start .btns { margin-top: 0; gap: clamp(32px, 6vw, 56px); }
+.menu-title .start .btns .tbtn.main { position: relative; width: clamp(150px, 22vw, 176px); min-width: 0; height: clamp(52px, 15vh, 70px); min-height: 44px; padding: 0; font: 400 clamp(24px, 7.6vh, 30px) var(--zh); color: var(--ink-b); background: var(--paper-2); border: 2px solid var(--rust); border-radius: 6px; box-shadow: 0 4px 10px rgba(0,0,0,0.5); }
+.menu-title .start .btns .tbtn.main::before { content: ""; position: absolute; top: -10px; left: 16px; width: 18px; height: 24px; background: #9c2f2a; clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%); }
+.menu-title .start .btns .tbtn.main:active { transform: translateY(2px); box-shadow: 0 2px 5px rgba(0,0,0,0.5); }
+/* 角落按鈕：整個標題畫面上可點的都至少 44×44；操作說明、音效是紙色，測試入口維持低調的深色玻璃 */
+.menu-title .corner { min-width: 44px !important; min-height: 44px !important; padding: 0 14px !important; font-size: 15px !important; opacity: 1; }
+.menu-title .corner-right .corner { font-family: var(--zh); color: var(--ink-b); background: rgba(239, 224, 189, 0.92); border: 1.5px solid var(--rust); }
+.menu-title .corner.dev-toggle { opacity: 0.85; }
+/* 測試入口展開：頁面縮成緊湊版（兩欄擠得下），入口按鈕仍維持 ≥44 高 */
+.menu-title.dev-open .title-page { width: 300px; padding: 8px 14px 6px; }
+.menu-title.dev-open .title-page h1 { font-size: 34px; }
+.menu-title.dev-open .title-en { font-size: 16px; padding-top: 8px; margin-top: 2px; }
+.menu-title.dev-open .title-tag { display: none; }
+.menu-title.dev-open .start .btns { gap: 16px; }
+.menu-title.dev-open .start .btns .tbtn.main { width: 130px; height: 48px; font-size: 22px; }
+
+/* ── S1-d：頭目血條（50% 刻度）、失衡條、跪下／掛崖提示 ──
+   真實建置量測（tools/boss-hud-edge.mjs）：頭目島的遠端崖邊投影在螢幕 y≈62～72，所以血條不能放在計時器下方（會蓋住崖邊），
+   改放第一排：計時器右邊、銀幣左邊（y 6～30）。寬度＝min(300px, 36vw, 計時器右緣到銀幣左緣的空間) ≤ 畫面 40%；旗標在血條正下方（y 34～50，仍在崖邊之上）。 */
+.hud.v4.boss .wave { display: none; }
+.bossbar { left: calc(50% + 54px); top: calc(var(--st) + 6px); width: min(300px, 36vw, calc(50% - 215px)); height: 24px; }
+.bb-hp { position: absolute; left: 0; right: 0; top: 0; height: 16px; border-radius: 8px; overflow: hidden; background: var(--glass); border: 1px solid rgba(255,255,255,0.22); }
+.bb-fill { position: absolute; inset: 0 auto 0 0; width: 100%; background: linear-gradient(90deg, #b8503a, #e0755a); }
+.bossbar.half .bb-fill { background: linear-gradient(90deg, #d9a02b, #ffd35a); }
+.bb-tick { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 0 1px rgba(0,0,0,0.55); }
+.bb-name, .bb-num { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; font-size: 11px; font-weight: 700; line-height: 1; text-shadow: 0 1px 2px #000; white-space: nowrap; }
+.bb-name { left: 7px; }
+.bb-num { right: 7px; font-variant-numeric: tabular-nums; }
+.bb-imb { position: absolute; left: 0; right: 0; top: 18px; height: 6px; display: flex; gap: 2px; }
+.bb-imb i { flex: 1; border-radius: 2px; background: rgba(10, 18, 30, 0.7); border: 1px solid rgba(255,255,255,0.22); }
+.bb-imb i.on { background: #ffb23a; border-color: #ffe0a0; }
+.bossbar.full .bb-imb i.on { background: #ff5c4a; border-color: #ffc0b8; }
+.bb-flag { position: absolute; left: 0; top: 28px; height: 16px; display: none; align-items: center; gap: 4px; padding: 0 8px; border-radius: 8px; background: var(--glass); border: 1px solid rgba(255,255,255,0.22); font-size: 11px; font-weight: 700; white-space: nowrap; }
+.bossbar.kneel .bb-flag, .bossbar.hang .bb-flag { display: flex; }
+.bb-pips { display: none; gap: 3px; }
+.bossbar.hang .bb-pips { display: flex; }
+.bb-pips i { width: 8px; height: 8px; border-radius: 50%; background: rgba(10, 18, 30, 0.7); border: 1.5px solid #ffe0a0; }
+.bb-pips i.on { background: #ffd35a; }
+
+/* S1-d 弱點提示：進島中央提示的第二行（小字，同一個提示的一部分） */
+.banner small { display: block; margin-top: 2px; font-size: 0.5em; font-weight: 700; letter-spacing: 0.08em; }
+/* 頭目提示放畫面中下方（約 62%）：頭目出生在畫面上半，提示不能壓在他身上；橫向在搖桿與右手鍵群之間 */
+.banner.low { top: 62%; left: calc(50% - 30px); font-size: min(28px, 3vw); }
